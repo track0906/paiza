@@ -1,0 +1,35 @@
+input_line = input().split()
+N = int(input_line[0])
+Input = []
+A = []
+B = []
+
+for i in range(N):
+    input_line = input().split()
+    Input.append([int(input_line[0]),int(input_line[1])])
+
+Input=sorted(Input)
+
+for i in range(N):
+    A.append(Input[i][0])
+    B.append(Input[i][1])
+Result = []
+result = B[0]-A[0]
+resultA = A[0]
+resultB = B[0]
+
+for i in range(N-1):
+    if A[i+1] <= resultB+1 and B[i+1] <= resultB:
+        pass
+    elif A[i+1] <= resultB+1 and B[i+1] > resultB:
+        result = B[i+1] - resultA
+        #Aはそのまま
+        resultB = B[i+1]
+    else:
+        Result.append(result)
+        result = B[i+1]-A[i+1]
+        resultA = A[i+1]
+        resultB = B[i+1]
+
+Result.append(result)
+print(max(Result)+1)
